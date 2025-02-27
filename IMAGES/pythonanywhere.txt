@@ -1,0 +1,19 @@
+email: shamirisaidiselemani@gmail.com
+pass: dodomamoja.1
+
+----------
+
+username: clinicaltreatment
+password: 32491989s
+
+--------------
+
+site: clinicaltreatment.pythonanywhere.com
+
+
+git:  https://github.com/shamiraty/Clinical-Treatment-
+
+------------
+FUTURE:
+
+ 

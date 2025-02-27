@@ -1,0 +1,13 @@
+site
+https://medicine.pythonanywhere.com/
+
+git
+https://github.com/shamiraty/anova-flask
+
+pythonanywhere
+shamirisaidiselemani@gmail.com
+dodomamoja.1
+username:medicine
+
+------------------------------------
+

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Results</title>
+    <link href="{{ url_for('static', filename='bootstrap/css/bootstrap.min12.css') }}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .card-header {
+            font-weight: bold;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            color: #007bff;
+        }
+        .badge {
+            font-size: 0.9rem;
+        }
+        .btn-back {
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+        }
+        .btn-back:hover {
+            background-color: #0056b3;
+        }
+        .icon {
+            margin-right: 10px;
+        }
+        .card-body {
+            padding: 15px;
+            max-height: 220px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="card mb-4 shadow-lg">
+            <div class="card-header bg-primary text-white text-center">
+                <h1 class="mb-0">Results for {{ disease }}</h1>
+            </div>
+            <div class="card-body">
+                <h5 class="text-center text-primary mb-4">
+                    A list of patients diagnosed with {{ disease }}, the symptoms associated with it, related lab tests, and the effectiveness of treatments.
+                </h5>
+                <small class="text-muted d-block text-center">
+                    A list of patients diagnosed with this disease, their symptoms, associated lab tests, and the effectiveness of treatments. This means that symptoms with similarity to {{ disease }} are listed here, lab tests related to {{ disease }} are shown here, and the treatments and their effectiveness related to {{ disease }} are presented here, along with the patients diagnosed with {{ disease }}. 
+                    <br><br>
+                    Additionally, the medication used to treat this disease is listed here.
+                </small>
+            </div>
+        </div>
+        
+        {% if records %}
+        <div class="row justify-content-center">
+            {% for record in records %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-lg">
+                    <div class="card-header text-white bg-primary">
+                        <i class="fas fa-virus icon"></i>{{ record.patient }}
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text"><strong><i class="fas fa-head-side-cough"></i> Symptoms:</strong> {{ ', '.join(record.symptoms) }}</p>
+                        <p class="card-text"><strong><i class="fas fa-flask"></i> Lab Tests:</strong> {{ ', '.join(record.lab_tests) }}</p>
+                        <p class="card-text"><strong><i class="fas fa-comments"></i> Doctor's Comment:</strong> {{ record.doctor_comment }}</p>
+                        <p class="card-text"><strong><i class="fas fa-pills"></i> Medications:</strong> {{ ', '.join(record.medications) }}</p>
+                        <p class="card-text"><strong><i class="fas fa-medkit"></i> Effectiveness:</strong> <span class="badge badge-success">{{ record.effectiveness }}</span></p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="text-center">No records found for {{ disease }}.</p>
+        {% endif %}
+        <div class="text-center mt-4">
+            <a href="/" class="btn btn-back"><i class="fas fa-arrow-left"></i> Back</a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+</body>
+</html>
